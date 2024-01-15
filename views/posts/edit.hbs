@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+         {{> navbar}}
+      <div class="container">
+    <h1 style="text-align: center;">Edit {{post.name}}</h1>
+    <div style="width: 30%; margin: 25px auto;">
+        <form action="/posts/{{post._id}}" method="POST">
+            <input type="hidden" name="_method" value="PUT"> 
+            <div class="form-group">
+                <input class="form-control" type="text" name="post[name]" value="{{post.name}}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="url" name="post[image]" value="{{post.image}}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="post[description]" value="{{post.description}}">
+            </div>
+            <div class="form-group">
+                    <select class="form-control" id="category" name="post[category]" >
+                        <option value="" selected disabled>Select a category</option>
+                        <option value="games">games</option>
+                        <option value="football">football</option>
+                        <option value="entertainment">entertainment</option>
+                        <option value="rap">rap</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </div>
+        </form>
+        <a href="/posts">Go back</a>
+    </div>
+</div>
+
+
+</body>
+</html>

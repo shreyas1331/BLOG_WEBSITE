@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Blogspot</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="/">Home</a>
+        <a class="nav-link" href="/posts">Posts</a>
+      </div>
+      <div class="navbar-nav ml-auto"> 
+        {{#if userLoggedIn}}
+          <p class="nav-link">Welcome, <span class="text-info">{{currentuser.username}}</span>!</p>
+          {{#if isAdmin}}
+            <a class="nav-link" href="/admin/dashboard">Admin Dashboard</a>
+          {{/if}}
+          <a class="nav-link" href="/logout">Logout</a>
+        {{else}}
+          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/register">Register</a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</nav>

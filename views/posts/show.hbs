@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Include Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    
+</head>
+<body>
+     {{> navbar}}
+        <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead">{{post.author.username}}</p>
+                <div class="list-group">
+              <li class="list-group-item active">Post</li>
+                    <li class="list-group-item"><a href="/posts"><strong>All Posts</strong></a></li>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="{{post.image}}" width="500" height="500">
+                    <div class="caption-full">
+                        <h4><a>{{post.name}}</a></h4>
+                        <p>{{post.description}}</p>
+                         <p><strong>Category:</strong> {{post.category}}</p>
+                        <p>
+                            <em>Submitted By {{post.author.id.username}}</em>
+                        </p>
+                        <a class="btn btn-sm btn-warning" href="/posts/{{post._id}}/edit">Edit</a>
+                        <form id="delete-form" action="/posts/{{post._id}}/delete" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-sm btn-danger" onclick="confirmDelete()">Delete</button>
+                        </form>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!-- posts.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+        integrity="sha384-eMNCOj0F4mtTUpTfTI7irMQwEuZxZz1AZ9LQBN7I6sFsTFbApJkzERnpDwtk1E1q"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {{> navbar}}
+    
+    <div class="container">
+           <header>
+            <div class="container">
+                <h1>Welcome to Blogspot</h1>
+                <p>View posts from users from all over the world</p>
+               {{#if userLoggedIn}}
+                    <p>
+                        <a class="btn btn-primary btn-large" href="/posts/publish">Add a new post</a>
+                    </p>
+                {{/if}}
+                <!-- Add category filter dropdown -->
+                <form action="/posts/filterByCategory" method="POST">
+                <div class="form-group">
+                    <label for="categoryFilter">Sort by Category:</label>
+                    <select class="form-control" id="categoryFilter" name="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="games">Games</option>
+                        <option value="rap">Rap</option>
+                        <option value="football">Football</option>
+                        <option value="entertainment">Entertainment</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
+            </div>
+        </header>
+        <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+            {{#each posts}}
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                    <img src="{{this.image}}" width="200" height="200">
+                    <div class="caption">
+                        <h4>{{this.name}}</h4>
+                    </div>
+                    <p>
+                        <a href="/posts/{{this._id}}" class="btn btn-primary">More Info</a>
+                    </p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</body>
+
+</html>
